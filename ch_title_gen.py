@@ -182,8 +182,6 @@ class ChineseTitleGenerator:
 
 if __name__ == '__main__':
     # Change debug logs to print when testing.
-    test_folder = Path(r"")
-    gen = ChineseTitleGenerator()
-    for file in test_folder.iterdir():
-        new_name = gen.generate_title(str(file), "base name")
-        logger.debug(f"New Name: {new_name}\n")
+    test_gen = ChineseTitleGenerator()
+    new_test_name = test_gen.generate_title("peerless 第七季 第四十八集", "peerless")
+    print(f"New Name: {new_test_name}")
