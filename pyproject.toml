@@ -8,6 +8,3 @@ version = "1.0"
 requires-python = ">=3.10"
 dependencies = ["pycnnum==2.1.0"]
 description = "A program that changes chinese tv show titles to english format."
-
-[tool.hatch.build]
-exclude = ["/.*"]
