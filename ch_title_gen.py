@@ -9,16 +9,18 @@ logger = logging.getLogger(__name__)
 
 
 class ChineseTitleGenerator:
+    # Regex patterns for name.
+    all_numbers_pattern = re.compile(r'(\d+)')
+    ch_num_pattern = re.compile(r'第([零一二三四五六七八九十百千万]+)[集季话]')
+    season_pattern = re.compile(r'第?\s*(\d+)季|(?:Season|S)\s*(\d+)')
+    episode_range_pattern = re.compile(r'(\d+)\s*[-~～]\s*(\d+)')
+    episode_pattern = re.compile(r'[第季]\s*(\d+)[集话]|(?:Episode|EP|E)\s*(\d+)')
+
+    miscellaneous_strings = ["1080P", "4K"]
+
     def __init__(self) -> None:
         self.name = self.base_name = self.suffixes = self.filtered_name = None
         self.season_no = self.episode_range_no = self.episode_no = None
-
-        # Regex patterns for name.
-        self.all_numbers_pattern = re.compile(r'(\d+)')
-        self.ch_num_pattern = re.compile(r'第([零一二三四五六七八九十百千万]+)[集季话]')
-        self.season_pattern = re.compile(r'第?\s*(\d+)季|(?:Season|S)\s*(\d+)')
-        self.episode_range_pattern = re.compile(r'(\d+)\s*[-~～]\s*(\d+)')
-        self.episode_pattern = re.compile(r'[第季]\s*(\d+)[集话]|(?:Episode|EP|E)\s*(\d+)')
 
     def get_suffixes(self) -> str:
         """
@@ -35,13 +37,11 @@ class ChineseTitleGenerator:
             logger.debug(f"name: {self.name}")
             return ""
 
-    @staticmethod
-    def miscellaneous_strings_filter(name: str) -> str:
+    def miscellaneous_strings_filter(self, name: str) -> str:
         """
         Remove common strings from name that may lead to incorrect generated name.
         """
-        miscellaneous_strings = ["1080P", "4K"]
-        for char in miscellaneous_strings:
+        for char in self.miscellaneous_strings:
             if char in name:
                 logger.debug(f"miscellaneous_string: {char}, removed from: {name}")
                 name = name.replace(char, '')

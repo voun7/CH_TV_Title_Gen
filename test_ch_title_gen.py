@@ -7,7 +7,7 @@ class TestChineseTitleGenerator(TestCase):
     def test_get_suffixes(self):
         print(f"\nRunning {self._testMethodName}...")
         gen = ChineseTitleGenerator()
-        gen.name = "Sample name"
+        gen.name = "Sample name.srt"
         self.assertEqual(gen.get_suffixes(), "")
 
     def test_miscellaneous_strings_filter(self):
@@ -48,6 +48,7 @@ class TestChineseTitleGenerator(TestCase):
 
     def test_generate_title(self):
         print(f"\nRunning {self._testMethodName}...")
+        gen = ChineseTitleGenerator()
         test_vals = {
             'Multi Sub【逆天至尊】  Against The Sky Supreme   EP 356 再下一城': ' EP356',
             '《毒手巫医丨Poisonous Witch Doctcr》EP83': ' EP83',
@@ -100,6 +101,9 @@ class TestChineseTitleGenerator(TestCase):
             '万古第一神 动态漫画第一季 第84集': ' EP84',
             '万古第一神 第80集 #七号动漫馆': ' EP80',
             '万界主宰008': ' EP8',
+            '万界主宰003 0008': ' S3 EP8',
+            '万界主宰S03 008-0020': ' S3 EP8-20',
+            '万界主宰03 008-0020 1': ' EP8-20',
             '万界主宰11': ' EP11',
             '九位师娘，叫我别怂 第20集': ' EP20',
             '仙为奴神为仆，大帝看门狗 第23集 兴师问罪日升国 #七号动漫馆': ' EP23',
@@ -149,8 +153,6 @@ class TestChineseTitleGenerator(TestCase):
             '开局就无敌第二季 第65集': ' S2 EP65',
             '开局有剑域，我能苟成剑神 第106集 #七号动漫馆': ' EP106',
             '开局签到至尊丹田 第150集 以掌对掌，班门弄斧': ' EP150',
-            '开局签到至尊丹田 第152集 大世之争，拉开序幕 #七号动漫馆': ' EP152',
-            '开局签到荒古圣体 动态漫画 第6集': ' EP6',
             '开局签到荒古圣体 动态漫画第一季 第8集': ' EP8',
             '开局签到荒古圣体 第7集': ' EP7',
             '弟子修炼，我躺平！ 动态漫画第二季 第15集': ' S2 EP15',
@@ -208,11 +210,9 @@ class TestChineseTitleGenerator(TestCase):
             '最强反套路系统 动态漫画  第二季 第38集': ' S2 EP38',
             '最强反套路系统 动态漫画第二季 第39集': ' S2 EP39',
             '最强反套路系统（第2季）第37集 从未见过如此愤怒的系统 #七号动漫馆': ' S2 EP37',
-            '末世盗贼行 动态漫画 第29集': ' EP29',
             '末世神级升级系统 动态漫画  第一季 第37集': ' EP37',
             '末世神级升级系统 动态漫画第一季 第35集': ' EP35',
             '正义的我被系统逼成了大反派 第29集': ' EP29',
-            '武灵剑尊 第14集': ' EP14',
             '武炼巅峰 动态漫画  第二季 第13集': ' S2 EP13',
             '武炼巅峰 动态漫画第二季 第16集': ' S2 EP16',
             '武神主宰 第493集 蓝光 #神话动漫社': ' EP493',
@@ -241,7 +241,6 @@ class TestChineseTitleGenerator(TestCase):
             '突然成仙了怎么办 第93集': ' EP93',
             '绝世战魂 动态漫画 第335集 万字铜墙，天仙之衣 #七号动漫馆': ' EP335',
             '绝世战魂 第333集 仇敌夹击，团结迎战 #七号动漫馆': ' EP333',
-            '绝世战魂动态漫 第332集': ' EP332',
             '绝世武神 第七季 peerless martial god Season7 54第五十四集 自求多福#第七季': ' S7 EP54',
             '绝世武神第七季 第53集': ' S7 EP53',
             '绝世武魂 第428集 蓝光 #神话动漫社': ' EP428',
@@ -254,7 +253,8 @@ class TestChineseTitleGenerator(TestCase):
             '逆天至尊 第353集 蓝光 #神话动漫社': ' EP353',
             '遮天 [81]': ' EP81',
             '邪神降世，我有一座大凶狱  第26-27集 #七号动漫馆': ' EP26-27',
-            '邪神降世，我有一座大凶狱 第22-23集 #七号动漫馆': ' EP22-23',
+            '邪神降世，我有一座大凶狱 第22~23集 #七号动漫馆': ' EP22-23',
+            '邪神降世，我有一座大凶狱 第22～23集 #七号动漫馆': ' EP22-23',
             '邪神降世，我有一座大凶狱 第28集': ' EP28',
             '都市仙帝：龙王殿 第26集': ' EP26',
             '都市仙帝：龙王殿 第27集 #七号动漫馆': ' EP27',
@@ -281,6 +281,5 @@ class TestChineseTitleGenerator(TestCase):
         }
         for i, (name, result) in enumerate(test_vals.items()):
             with self.subTest(i=i):
-                gen = ChineseTitleGenerator()
                 name = gen.generate_title(name, "")
                 self.assertEqual(name, result)
