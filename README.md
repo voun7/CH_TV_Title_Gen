@@ -26,6 +26,8 @@ python -m build
 pip install git+https://github.com/voun7/CH_TV_Title_Gen.git
 ```
 
+Append tag for install of specific version e.g. `@1.1`
+
 ``` python
 from ch_title_gen import ChineseTitleGenerator
 

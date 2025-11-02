@@ -277,6 +277,7 @@ class TestChineseTitleGenerator(TestCase):
             "都市至尊 S3 EP2-4 EP30": " S3 EP2-4",
             "都市至尊 S3 EP30 EP2-4": " S3 EP2-4",
             " 第七季 peerless 第四十八集": " S7 EP48",
+            "别人御兽我御兽娘73 I am a Beast Tamer Ep 73": " EP73",
             # "": "",
         }
         for i, (name, result) in enumerate(test_vals.items()):

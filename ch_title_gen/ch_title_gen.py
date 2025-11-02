@@ -14,7 +14,7 @@ class ChineseTitleGenerator:
     ch_num_pattern = re.compile(r'第([零一二三四五六七八九十百千万]+)[集季话]')
     season_pattern = re.compile(r'第?\s*(\d+)季|(?:Season|S)\s*(\d+)')
     episode_range_pattern = re.compile(r'(\d+)\s*[-~～]\s*(\d+)')
-    episode_pattern = re.compile(r'[第季]\s*(\d+)[集话]|(?:Episode|EP|E)\s*(\d+)')
+    episode_pattern = re.compile(r'[第季]\s*(\d+)[集话]|(?:Episode|EP|Ep|E)\s*(\d+)')
 
     miscellaneous_strings = ["1080P", "4K"]
 
