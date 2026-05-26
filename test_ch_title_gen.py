@@ -16,11 +16,13 @@ class TestChineseTitleGenerator(TestCase):
         test_vals = {
             '1080P': '',
             '1080P 一世成仙 第57集 4K': ' 一世成仙 第57集 ',
-            '1080p': '1080p',
+            '1080p': '',
             '4K': '',
             '4k': '4k',
             '一世成仙 1080P 第57集': '一世成仙  第57集',
-            '真武巅峰1080': '真武巅峰1080'
+            '真武巅峰1080': '真武巅峰1080',
+            '親愛的，熱愛的 Go Go Squid! 08 楊紫 (1080p).mp4': '親愛的，熱愛的 Go Go Squid! 08 楊紫 ().mp4',
+            # '': '',
         }
         for i, (name, result) in enumerate(test_vals.items()):
             with self.subTest(i=i):

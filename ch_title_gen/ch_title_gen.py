@@ -16,7 +16,7 @@ class ChineseTitleGenerator:
     episode_range_pattern = re.compile(r'(\d+)\s*[-~～]\s*(\d+)')
     episode_pattern = re.compile(r'[第季]\s*(\d+)[集话]|(?:Episode|EP|Ep|E)\s*(\d+)')
 
-    miscellaneous_strings = ["1080P", "4K"]
+    miscellaneous_strings = ["1080p", "1080P", "4K"]
 
     def __init__(self) -> None:
         self.name = self.base_name = self.suffixes = self.filtered_name = None
